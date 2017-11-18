@@ -1,11 +1,14 @@
 {
-  "name": "ActivityTracker.Client",
+  "name": "activitytracker.client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.4"
   },
   "scripts": {

@@ -1,9 +1,0 @@
-.chatBox {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    /* height: 100%; */
-    /* border: 1px solid #00BCD4;  */
-    border-left: 1px solid #00BCD4; 
-    /* border-radius: 2px; */
-}
