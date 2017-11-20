@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import activities from "../reducers/activites";
-import goals from "../reducers/goals";
-import user from "../reducers/user";
+import activities from "../reducers/activitiesReducer";
+import goals from "../reducers/goalsReducer";
+import user from "../reducers/userReducer";
 
 const rootReducer = combineReducers({
   activities,

@@ -1,0 +1,13 @@
+// activity action types
+export const LOAD_ACTIVITIES_SUCCESS = 'LOAD_ACTIVITIES_SUCCESS';
+export const CREATE_ACTIVITY = 'CREATE_ACTIVITY';
+export const UPDATE_ACTIVITY = 'UPDATE_ACTIVITY';
+export const DELETE_ACTIVITY = 'DELETE_ACTIVITY';
+export const SET_ACTIVITY_TO_COMPLETE = 'SET_ACTIVITY_TO_COMPLETE';
+
+
+// goal action types 
+export const CREATE_GOAL = 'CREATE_GOAL';
+export const UPDATE_GOAL = 'UPDATE_GOAL';
+export const DELETE_GOAL = 'DELETE_GOAL';
+export const SET_GOAL_TO_COMPLETE = 'SET_GOAL_TO_COMPLETE';
