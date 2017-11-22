@@ -1,7 +1,10 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as activityActions from "../actions/activityActions";
+import * as activityActions from "../../../../actions/activityActions";
+import ActivitiesList from "./ActivitiesList";
+///actions/activityActions
 
 class ActivitiesPage extends React.Component {
   constructor(props) {
@@ -10,29 +13,36 @@ class ActivitiesPage extends React.Component {
     this.state = {};
   }
 
-  componentWillMount() {}
+  // componentWillMount() {}
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
-  componentWillReceiveProps(nextProps) {}
+  // componentWillReceiveProps(nextProps) {}
 
-  shouldComponentUpdate(nextProps, nextState) {}
+  // shouldComponentUpdate(nextProps, nextState) {}
 
-  componentWillUpdate(nextProps, nextState) {}
+  // componentWillUpdate(nextProps, nextState) {}
 
-  componentDidUpdate(prevProps, prevState) {}
+  // componentDidUpdate(prevProps, prevState) {}
 
-  componentWillUnmount() {}
+  // componentWillUnmount() {}
 
   render() {
-    return <div />;
+    console.log(this.props);
+    const {activities} = this.props;
+
+    return (
+      <div>
+        <ActivitiesList activities={activities}/>
+      </div>
+    );
   }
 }
 
 // Verifies that assinged elements from the store and actions are correct type
 ActivitiesPage.propTypes = {
   activities: PropTypes.array.isRequired,
-  actions: PropTypes.func.isRequired
+  actions: PropTypes.object.isRequired
 };
 
 // Maps selected part of the store state to the definied props - here state.activities

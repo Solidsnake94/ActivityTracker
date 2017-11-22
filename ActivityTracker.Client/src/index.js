@@ -10,7 +10,14 @@ import registerServiceWorker from "./registerServiceWorker";
 import configureStore from "./store/configureStore";
 import App from "./components/App/App";
 
+import {loadActivities} from './actions/activityActions';
+
+
 const store = configureStore();
+store.dispatch(loadActivities());
+console.log('get store');
+console.log(store.getState());
+
 
 ReactDOM.render(
   <Provider store={store}>
