@@ -1,9 +1,6 @@
 namespace ActivityTracker.API.Entities
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class EntityModel : DbContext
     {
@@ -31,11 +28,6 @@ namespace ActivityTracker.API.Entities
             modelBuilder.Entity<Activity>()
                 .Property(e => e.DistanceInKilometers)
                 .HasPrecision(18, 3);
-
-            modelBuilder.Entity<ActivityType>()
-                .HasMany(e => e.Activities)
-                .WithRequired(e => e.ActivityType)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Goal>()
                 .Property(e => e.TargetDistance)

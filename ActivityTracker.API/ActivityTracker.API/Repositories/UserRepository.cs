@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace ActivityTracker.API.Repositories
 {
     public class UserRepository
     {
         private EntityModel db;
+        private FriendshipRepository _friendshipRepository;
 
         public UserRepository()
         {
@@ -22,26 +22,74 @@ namespace ActivityTracker.API.Repositories
             return db.Users;
         }
 
-        public User GetUserById(int id)
+        public async Task<User> GetUserById(int id)
         {
-            return db.Users.Where(u => u.UserID == id).SingleOrDefault();
+            try
+            {
+                return await db.Users.Where(u => u.UserID == id).SingleOrDefaultAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task<String> UpdateUserAsync(User updatedUser)
         {
-            User user = await db.Users.Where(u => u.UserID == updatedUser.UserID).SingleOrDefaultAsync();
-            user = updatedUser;
-            await db.SaveChangesAsync();
-            return "User successfully updated";
+            try
+            {
+                User user = await db.Users.Where(u => u.UserID == updatedUser.UserID).SingleOrDefaultAsync();
+                user = updatedUser;
+                await db.SaveChangesAsync();
+                return "User successfully updated";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task<String> CreateUserAsync(User newUser)
         {
-            db.Users.Add(newUser);
-            await db.SaveChangesAsync();
-            return "User succesfully created";
+            try
+            {
+                db.Users.Add(newUser);
+                await db.SaveChangesAsync();
+                return "User succesfully created";
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
+//        public async Task<IEnumerable<User>> GetFriendsByUserId(int userId)
+//        {
+//            try
+//            {
+//                var friends = _friendshipRepository.GetFriendListForUser(userId);
+//                
+//            }
+//            catch (Exception e)
+//            {
+//                throw e;
+//            }
+//        }
 
+        public bool IsFriendOfUser(int userId, int friendsId)
+        {
+            try
+            {
+                if (db.Friendships.Any(a => a.UserID == userId && a.FriendID == friendsId && a.Status == "FRIENDS"))
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

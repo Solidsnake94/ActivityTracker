@@ -1,43 +1,137 @@
 ﻿using ActivityTracker.API.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using ActivityTracker.API.Repositories;
+using System.Collections;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
+    [Route("api/activities")]
     public class ActivitiesController : ApiController
     {
-        //  GET api/activities
-        /// <returns> List of all activities of a logged user </returns> 
-        //public IEnumerable<Activity> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        private readonly ActivityRepository _activityRepository = new ActivityRepository();
+        private readonly UserRepository _userRepository = new UserRepository();
 
-        //  GET api/activities/5
-        /// <returns> A specified activity for a logged user </returns>
-        //public Activity Get(int id)
-        //{
+        //        private async Task<bool> GenerateFakeActivities()
+        //        {
+        //            
+        //        }
 
-        //    return "value";
-        //}
-
-        // POST api/activities
-        public void Post([FromBody]string value)
+        //api/activities/create
+        [Route("create")]
+        [HttpPost]
+        public async Task<IHttpActionResult> CreateActivity(Activity activity)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _activityRepository.CreateUserActivity(activity);
+            return Ok("Activity created");
         }
 
-        // PUT api/activities/5
-        public void Put(int id, [FromBody]string value)
+        [Route("create")]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateActivity(Activity activity)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _activityRepository.UpdateUserActivity(activity);
+            return Ok("Activity has been updated");
         }
 
         // DELETE api/activities/5
-        public void Delete(int id)
+        [Route("create")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> DeleteActivity(int activityId)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _activityRepository.DeleteUserActivity(activityId);
+            return Ok("Activity has been deleted");
         }
+
+        [Route("")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAllUserActivities(int userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            IEnumerable activities = await _activityRepository.GetAllUserActivities(userId);
+            return Ok(activities);
+        }
+
+        //api/activities?userId=1&activityId=1
+        // Get Activity by activity ID
+        [Route("")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivityById(int userId, int activityId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Activity activity = await _activityRepository.GetActivityByActivityId(userId, activityId);
+            return Ok(activity);
+        }
+
+        [Route("activitytype")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivityByActivityType(int userId, int activityTypeId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable activities = await _activityRepository.GetActivityByActivityTypeId(userId, activityTypeId);
+            return Ok(activities);
+        }
+
+        [Route("filter")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivityByFilter(int userId, string filter)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable activities = await _activityRepository.GetActivitiesForUserByFilter(userId, filter);
+            return Ok(activities);
+        }
+
+        [Route("goal")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivityByGoalID(int userId, int goalId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable activities = await _activityRepository.GetActivitiesByGoalID(userId, goalId);
+            return Ok(activities);
+        }
+
+        [Route("friends")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetActivitiesByFriendsId(int userId, int friendsId)
+        {
+            if (!ModelState.IsValid && !_userRepository.IsFriendOfUser(userId,friendsId))
+            {
+                return BadRequest(ModelState);
+            }
+
+            IEnumerable activities = await _activityRepository.GetActivitiesByFriendsId(friendsId);
+            return Ok(activities);
+        }
+        // Create activity
     }
 }

@@ -1,8 +1,6 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -20,6 +18,7 @@ namespace ActivityTracker.API.Controllers
             _repo = new UserRepository();
         }
 
+
         // GET api/users
         public IEnumerable<User> Get()
         {   
@@ -27,9 +26,9 @@ namespace ActivityTracker.API.Controllers
         }
 
         // GET api/users/5
-        public User Get(int id)
+        public async Task<User> Get(int id)
         {
-            return _repo.GetUserById(id);
+            return await _repo.GetUserById(id);
         }
 
         // POST api/users

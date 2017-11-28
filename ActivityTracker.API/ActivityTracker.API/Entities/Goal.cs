@@ -4,7 +4,6 @@ namespace ActivityTracker.API.Entities
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Goal")]
     public partial class Goal
@@ -32,6 +31,8 @@ namespace ActivityTracker.API.Entities
         public TimeSpan? TargetTime { get; set; }
 
         public bool Completed { get; set; }
+
+        public bool? IsPublic { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity> Activities { get; set; }
