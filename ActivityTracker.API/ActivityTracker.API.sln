@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityTracker.API", "ActivityTracker.API\ActivityTracker.API.csproj", "{D454FA1C-FD94-4C4F-A015-4CA003B024B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityTracker.API.Tests", "ActivityTracker.API.Tests\ActivityTracker.API.Tests.csproj", "{BCEF7E81-C2A1-4E1E-B61C-33F3F1DA64E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{D454FA1C-FD94-4C4F-A015-4CA003B024B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D454FA1C-FD94-4C4F-A015-4CA003B024B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D454FA1C-FD94-4C4F-A015-4CA003B024B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCEF7E81-C2A1-4E1E-B61C-33F3F1DA64E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEF7E81-C2A1-4E1E-B61C-33F3F1DA64E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEF7E81-C2A1-4E1E-B61C-33F3F1DA64E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEF7E81-C2A1-4E1E-B61C-33F3F1DA64E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F30F3685-78F5-47E7-8CAD-72E45AE69F30}
 	EndGlobalSection
 EndGlobal

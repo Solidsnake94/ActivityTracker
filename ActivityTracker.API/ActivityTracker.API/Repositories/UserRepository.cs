@@ -1,4 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,26 +8,27 @@ using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class UserRepository
+    public class UserRepository:IUserRepository
     {
-        private EntityModel db;
-        private FriendshipRepository _friendshipRepository;
+        private readonly IEntityModel _db;
+        private IFriendshipRepository _friendshipRepository;
 
-        public UserRepository()
+        public UserRepository(IEntityModel db, IFriendshipRepository friendshipRepository)
         {
-            db = new EntityModel();
+            _db = db;
+            _friendshipRepository = friendshipRepository;
         }
 
         public IEnumerable<User> GetAllUsers()
         {
-            return db.Users;
+            return _db.Users;
         }
 
         public async Task<User> GetUserById(int id)
         {
             try
             {
-                return await db.Users.Where(u => u.UserID == id).SingleOrDefaultAsync();
+                return await _db.Users.Where(u => u.UserID == id).SingleOrDefaultAsync();
             }
             catch (Exception e)
             {
@@ -38,9 +40,9 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                User user = await db.Users.Where(u => u.UserID == updatedUser.UserID).SingleOrDefaultAsync();
+                User user = await _db.Users.Where(u => u.UserID == updatedUser.UserID).SingleOrDefaultAsync();
                 user = updatedUser;
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "User successfully updated";
             }
             catch (Exception e)
@@ -53,8 +55,8 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                db.Users.Add(newUser);
-                await db.SaveChangesAsync();
+                _db.Users.Add(newUser);
+                await _db.SaveChangesAsync();
                 return "User succesfully created";
             }
             catch (Exception e)
@@ -80,7 +82,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                if (db.Friendships.Any(a => a.UserID == userId && a.FriendID == friendsId && a.Status == "FRIENDS"))
+                if (_db.Friendships.Any(a => a.UserID == userId && a.FriendID == friendsId && a.Status == "FRIENDS"))
                 {
                     return true;
                 }

@@ -1,14 +1,19 @@
 ﻿using ActivityTracker.API.Entities;
-using ActivityTracker.API.Repositories;
+using ActivityTracker.API.IRepositories;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
-    [Route("api/friends")]
+    [RoutePrefix("api/friends")]
     public class FriendsController : ApiController
     {
-        private readonly FriendshipRepository _friendshipRepository = new FriendshipRepository();
+        private readonly IFriendshipRepository _friendshipRepository;
+
+        public FriendsController(IFriendshipRepository friendshipRepository)
+        {
+            _friendshipRepository = friendshipRepository;
+        }
 
         [Route("create")]
         [HttpPost]

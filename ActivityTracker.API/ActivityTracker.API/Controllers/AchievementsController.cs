@@ -1,15 +1,21 @@
-﻿using ActivityTracker.API.Repositories;
+﻿using ActivityTracker.API.IRepositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
+    [RoutePrefix("api/achievemnts")]
     public class AchievementsController : ApiController
     {
-        private readonly AchievementRepository _achievementRepository = new AchievementRepository();
+        private readonly IAchievementRepository _achievementRepository;
 
-        [Route()]
+        public AchievementsController(IAchievementRepository achievementRepository)
+        {
+            _achievementRepository = achievementRepository;
+        }
+
+        [Route("")]
         [HttpGet]
         public async Task<IHttpActionResult> GetUserAchievements(int userId)
         {

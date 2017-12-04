@@ -1,4 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class GoalRepository
+    public class GoalRepository : IGoalRepository
     {
-        private EntityModel db;
+        private readonly IEntityModel _db;
 
-        public GoalRepository()
+        public GoalRepository(IEntityModel db)
         {
-            db = new EntityModel();
+            _db = db;
         }
 
         public async Task<IEnumerable<Goal>> GetAllUserGoals(int userId)
         {
-            List<Goal> goals = await db.Goals.Where(a => a.UserID == userId).ToListAsync();
+            List<Goal> goals = await _db.Goals.Where(a => a.UserID == userId).ToListAsync();
             return goals;
         }
 
@@ -30,14 +31,14 @@ namespace ActivityTracker.API.Repositories
                 switch (filter.ToLower())
                 {
                     case "enddate":
-                        goals = await db.Goals
+                        goals = await _db.Goals
                             .Where(a => a.UserID == userId)
                             .OrderByDescending(a => a.EndDate)
                             .ToListAsync();
                         break;
 
                     default:
-                        goals = await db.Goals
+                        goals = await _db.Goals
                             .Where(a => a.UserID == userId)
                             .OrderByDescending(a => a.StartDate)
                             .ToListAsync();
@@ -55,7 +56,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Goal> goals = await db.Goals
+                List<Goal> goals = await _db.Goals
                     .Where(a => a.UserID == userId && a.Completed == status)
                     .OrderByDescending(a => a.StartDate)
                     .ToListAsync();
@@ -71,7 +72,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Goal> goals = await db.Goals.Where(a => a.UserID == friendId && a.IsPublic == true).ToListAsync();
+                List<Goal> goals = await _db.Goals.Where(a => a.UserID == friendId && a.IsPublic == true).ToListAsync();
                 return goals;
             }
             catch (Exception e)
@@ -84,8 +85,8 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                db.Goals.Add(goal);
-                await db.SaveChangesAsync();
+                _db.Goals.Add(goal);
+                await _db.SaveChangesAsync();
                 return "Goal has been created";
             }
             catch (Exception e)
@@ -98,9 +99,9 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Goal goal = await db.Goals.Where(a => a.UserID == updateGoal.UserID).SingleOrDefaultAsync();
+                Goal goal = await _db.Goals.Where(a => a.UserID == updateGoal.UserID).SingleOrDefaultAsync();
                 goal = updateGoal;
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Goal has been updated";
             }
             catch (Exception e)
@@ -113,12 +114,12 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Goal goal = await db.Goals.Where(a => a.UserID == id).SingleOrDefaultAsync();
+                Goal goal = await _db.Goals.Where(a => a.UserID == id).SingleOrDefaultAsync();
                 if (goal != null)
                 {
-                    db.Goals.Remove(goal);
+                    _db.Goals.Remove(goal);
                 }
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Goal has been deleted";
             }
             catch (Exception e)

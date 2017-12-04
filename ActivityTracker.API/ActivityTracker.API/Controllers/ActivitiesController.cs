@@ -1,21 +1,24 @@
 ﻿using ActivityTracker.API.Entities;
-using ActivityTracker.API.Repositories;
+using ActivityTracker.API.IRepositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
-    [Route("api/activities")]
+    [RoutePrefix("api/activities")]
     public class ActivitiesController : ApiController
     {
-        private readonly ActivityRepository _activityRepository = new ActivityRepository();
-        private readonly UserRepository _userRepository = new UserRepository();
+        private readonly IActivityRepository _activityRepository;
 
-        //        private async Task<bool> GenerateFakeActivities()
-        //        {
-        //            
-        //        }
+        private readonly IUserRepository _userRepository;
+
+        public ActivitiesController(IActivityRepository activityRepository, IUserRepository userRepository)
+        {
+            _activityRepository = activityRepository;
+            _userRepository = userRepository;
+
+        }
 
         //api/activities/create
         [Route("create")]

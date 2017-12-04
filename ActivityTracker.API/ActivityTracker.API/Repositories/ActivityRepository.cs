@@ -1,4 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class ActivityRepository
+    public class ActivityRepository:IActivityRepository
     {
-        private EntityModel db;
+        private readonly IEntityModel _db;
 
-        public ActivityRepository()
+        public ActivityRepository(IEntityModel db)
         {
-            db = new EntityModel();
+            _db = db;
         }
 
         public async Task<IEnumerable<Activity>> GetAllUserActivities(int userId)
         {
             try
             {
-                List<Activity> activities = await db.Activities.Where(a => a.ActivityID == userId).ToListAsync();
+                List<Activity> activities = await _db.Activities.Where(a => a.ActivityID == userId).ToListAsync();
                 return activities;
             }
             catch (Exception e)
@@ -33,7 +34,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Activity activity = await db.Activities.Where(a => a.ActivityID == activityId && a.UserID == userId)
+                Activity activity = await _db.Activities.Where(a => a.ActivityID == activityId && a.UserID == userId)
                     .SingleOrDefaultAsync();
                 return activity;
             }
@@ -47,11 +48,11 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Activity activity = await db.Activities
+                Activity activity = await _db.Activities
                     .Where(a => a.ActivityID == updatedActivity.ActivityID && a.UserID == updatedActivity.UserID)
                     .SingleOrDefaultAsync();
                 activity = updatedActivity;
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Activity succesfully updated";
             }
             catch (Exception e)
@@ -64,8 +65,8 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                db.Activities.Add(activity);
-                await db.SaveChangesAsync();
+                _db.Activities.Add(activity);
+                await _db.SaveChangesAsync();
                 return "Activity succesfully created";
             }
             catch (Exception e)
@@ -78,12 +79,12 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Activity activity = await db.Activities.Where(a => a.ActivityID == activityId).SingleOrDefaultAsync();
+                Activity activity = await _db.Activities.Where(a => a.ActivityID == activityId).SingleOrDefaultAsync();
                 if (activity != null)
                 {
-                    db.Activities.Remove(activity);
+                    _db.Activities.Remove(activity);
                 }
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Activity has been deleted";
             }
             catch (Exception e)
@@ -96,7 +97,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Activity> activities = await db.Activities
+                List<Activity> activities = await _db.Activities
                     .Where(a => a.UserID == userId && a.ActivityTypeID == activityTypeId)
                     .OrderByDescending(a => a.CreatedDate)
                     .ToListAsync();
@@ -117,19 +118,19 @@ namespace ActivityTracker.API.Repositories
                 switch (filter.ToLower())
                 {
                     case "distance":
-                        activities = await db.Activities
+                        activities = await _db.Activities
                             .Where(a => a.UserID == userId)
                             .OrderByDescending(a => a.DistanceInKilometers)
                             .ToListAsync();
                         break;
                     case "time":
-                        activities = await db.Activities
+                        activities = await _db.Activities
                             .Where(a => a.UserID == userId)
                             .OrderByDescending(a => a.DistanceInKilometers)
                             .ToListAsync();
                         break;
                     default:
-                        activities = await db.Activities
+                        activities = await _db.Activities
                             .Where(a => a.UserID == userId)
                             .OrderByDescending(a => a.CreatedDate)
                             .ToListAsync();
@@ -147,7 +148,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Activity> activity = await db.Activities
+                List<Activity> activity = await _db.Activities
                     .Where(a => a.GoalID == goalId && a.UserID == userId)
                     .OrderByDescending(a => a.CreatedDate)
                     .ToListAsync();
@@ -163,7 +164,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Activity> activities = await db.Activities
+                List<Activity> activities = await _db.Activities
                     .Where(a => a.UserID == friendsId)
                     .OrderByDescending(a => a.CreatedDate)
                     .ToListAsync();

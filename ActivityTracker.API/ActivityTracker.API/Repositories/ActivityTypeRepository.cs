@@ -1,19 +1,31 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class ActivityTypeRepository
+    public class ActivityTypeRepository : IActivityTypeRepository
     {
-        private EntityModel db;
+        private readonly IEntityModel _db;
 
-        public ActivityTypeRepository()
+        public ActivityTypeRepository(IEntityModel db)
         {
-            db = new EntityModel();
+            _db = db;
         }
 
-//        public async Task<IEnumerable<ActivityType>> GetAactivityTypes()
-//        {
-//            List<ActivityType> activities; 
-//        }
+        public async Task<IEnumerable<ActivityType>> GetActivityTypes()
+        {
+            try
+            {
+                return await _db.ActivityTypes.ToListAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

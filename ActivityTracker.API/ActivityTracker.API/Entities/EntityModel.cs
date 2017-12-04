@@ -1,23 +1,25 @@
+using ActivityTracker.API.IRepositories;
+
 namespace ActivityTracker.API.Entities
 {
     using System.Data.Entity;
 
-    public partial class EntityModel : DbContext
+    public partial class EntityModel : DbContext, IEntityModel
     {
         public EntityModel()
             : base("name=EntityModel")
-        {
+        { 
         }
 
-        public virtual DbSet<Achievement> Achievements { get; set; }
-        public virtual DbSet<Activity> Activities { get; set; }
-        public virtual DbSet<ActivityType> ActivityTypes { get; set; }
-        public virtual DbSet<Friendship> Friendships { get; set; }
-        public virtual DbSet<Goal> Goals { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserBodyDetail> UserBodyDetails { get; set; }
+        public virtual IDbSet<Achievement> Achievements { get; set; }
+        public virtual IDbSet<Activity> Activities { get; set; }
+        public virtual IDbSet<ActivityType> ActivityTypes { get; set; }
+        public virtual IDbSet<Friendship> Friendships { get; set; }
+        public virtual IDbSet<Goal> Goals { get; set; }
+        public virtual IDbSet<Location> Locations { get; set; }
+        public virtual IDbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual IDbSet<User> Users { get; set; }
+        public virtual IDbSet<UserBodyDetail> UserBodyDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

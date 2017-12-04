@@ -1,4 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class FriendshipRepository
+    public class FriendshipRepository : IFriendshipRepository
     {
-        private EntityModel db;
+        private readonly IEntityModel _db;
 
-        public FriendshipRepository()
+        public FriendshipRepository(IEntityModel db)
         {
-            db = new EntityModel();
+            _db = db;
         }
 
         public async Task<string> CreateFriendshipRequest(Friendship friendship)
         {
             try
             {
-                db.Friendships.Add(friendship);
-                await db.SaveChangesAsync();
+                _db.Friendships.Add(friendship);
+                await _db.SaveChangesAsync();
 
                 return "Friendship request created";
             }
@@ -35,14 +36,14 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Friendship friendship = await db.Friendships
+                Friendship friendship = await _db.Friendships
                     .Where(a => a.UserID == updatedfriendship.UserID && a.FriendID == updatedfriendship.FriendID)
                     .FirstOrDefaultAsync();
                 if (friendship != null)
                 {
                     friendship = updatedfriendship;
                 }
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Friendship updated";
             }
             catch (Exception e)
@@ -55,12 +56,12 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                Friendship friendship = await db.Friendships.Where(a => a.FriendshipID == id).FirstOrDefaultAsync();
+                Friendship friendship = await _db.Friendships.Where(a => a.FriendshipID == id).FirstOrDefaultAsync();
                 if (friendship != null)
                 {
-                    db.Friendships.Remove(friendship);
+                    _db.Friendships.Remove(friendship);
                 }
-                await db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return "Friendship deleted";
             }
             catch (Exception e)
@@ -73,7 +74,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<int> friends = await db.Friendships
+                List<int> friends = await _db.Friendships
                     .Where(a => a.UserID == userId && a.Status.ToUpper() == "FRIENDS")
                     .Select(a => a.FriendID).ToListAsync();
                 return friends;
@@ -88,7 +89,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<int> pendingFriends = await db.Friendships
+                List<int> pendingFriends = await _db.Friendships
                     .Where(a => a.UserID == userId && a.Status.ToUpper() == "PENDING")
                     .Select(a => a.FriendID).ToListAsync();
                 return pendingFriends;

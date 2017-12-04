@@ -1,5 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
-using ActivityTracker.API.Repositories;
+using ActivityTracker.API.IRepositories;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -8,33 +8,34 @@ using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
+    [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
 
-        private UserRepository _repo;
+        private IUserRepository _userRepository;
 
-        private UsersController()
+        public UsersController(IUserRepository userRepository)
         {
-            _repo = new UserRepository();
+            _userRepository = userRepository;
         }
 
 
         // GET api/users
         public IEnumerable<User> Get()
         {   
-            return _repo.GetAllUsers();            
+            return _userRepository.GetAllUsers();            
         }
 
         // GET api/users/5
         public async Task<User> Get(int id)
         {
-            return await _repo.GetUserById(id);
+            return await _userRepository.GetUserById(id);
         }
 
         // POST api/users
         public async Task<HttpResponseMessage> Post([FromBody] User user)
         {
-            string response = await _repo.CreateUserAsync(user);
+            string response = await _userRepository.CreateUserAsync(user);
             
             return Request.CreateResponse(HttpStatusCode.Created, response);
         }

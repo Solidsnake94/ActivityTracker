@@ -1,4 +1,5 @@
 ﻿using ActivityTracker.API.Entities;
+using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace ActivityTracker.API.Repositories
 {
-    public class AchievementRepository
+    public class AchievementRepository:IAchievementRepository
     {
-        private EntityModel db;
+        private readonly IEntityModel _db;
 
-        public AchievementRepository()
+        public AchievementRepository(IEntityModel db)
         {
-            db = new EntityModel();
+            _db = db;
         }
 
         public async Task<IEnumerable<Achievement>> GetAllUserAchievements( int userId)
         {
             try
             {
-                List<Achievement> achievements = await db.Achievements.Where(a => a.UserID == userId).ToListAsync();
+                List<Achievement> achievements = await _db.Achievements.Where(a => a.UserID == userId).ToListAsync();
                 return achievements;
             }
             catch (Exception e)

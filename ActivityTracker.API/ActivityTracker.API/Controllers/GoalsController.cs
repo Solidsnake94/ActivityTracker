@@ -1,16 +1,22 @@
 ﻿using ActivityTracker.API.Entities;
-using ActivityTracker.API.Repositories;
+using ActivityTracker.API.IRepositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
-    [Route("api/goals")]
+    [RoutePrefix("api/goals")]
     public class GoalsController : ApiController
     {
-        private readonly GoalRepository _goalRepository;
-        private readonly UserRepository _userRepository;
+        private readonly IGoalRepository _goalRepository;
+        private readonly IUserRepository _userRepository;
+
+        public GoalsController(IGoalRepository goalRepository, IUserRepository userRepository)
+        {
+            _goalRepository = goalRepository;
+            _userRepository = userRepository;
+        }
 
         [Route("create")]
         [HttpPost]
