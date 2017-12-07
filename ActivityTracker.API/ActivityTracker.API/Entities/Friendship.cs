@@ -1,10 +1,9 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Friendship")]
     public partial class Friendship
@@ -19,8 +18,10 @@ namespace ActivityTracker.API.Entities
         [StringLength(20)]
         public string Status { get; set; }
 
+        [JsonIgnore]
         public virtual User User { get; set; }
 
+        [JsonIgnore]
         public virtual User User1 { get; set; }
     }
 }

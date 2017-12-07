@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
     using System.ComponentModel.DataAnnotations;
@@ -14,6 +16,7 @@ namespace ActivityTracker.API.Entities
         [StringLength(50)]
         public string AchievementTitle { get; set; }
 
+        [JsonIgnore]
         public virtual User User { get; set; }
     }
 }

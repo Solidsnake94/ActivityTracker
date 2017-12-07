@@ -1,10 +1,9 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Activity")]
     public partial class Activity
@@ -23,8 +22,10 @@ namespace ActivityTracker.API.Entities
 
         public int? GoalID { get; set; }
 
+        [JsonIgnore]
         public virtual ActivityType ActivityType { get; set; }
 
+        [JsonIgnore]
         public virtual Goal Goal { get; set; }
     }
 }

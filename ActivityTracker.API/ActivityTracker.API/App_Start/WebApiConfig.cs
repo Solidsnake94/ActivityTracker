@@ -21,6 +21,7 @@ namespace ActivityTracker.API
             );
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+           
         }
     }
 }

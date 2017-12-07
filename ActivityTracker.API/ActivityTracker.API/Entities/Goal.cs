@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
     using System;
@@ -35,8 +37,10 @@ namespace ActivityTracker.API.Entities
         public bool? IsPublic { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Activity> Activities { get; set; }
 
+        [JsonIgnore]
         public virtual User User { get; set; }
     }
 }
