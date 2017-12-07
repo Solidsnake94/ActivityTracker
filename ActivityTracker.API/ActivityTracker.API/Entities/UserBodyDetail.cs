@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
     using System;
@@ -22,6 +24,7 @@ namespace ActivityTracker.API.Entities
         [StringLength(50)]
         public string AmountOfExercise { get; set; }
 
+        [JsonIgnore]
         public virtual User User { get; set; }
     }
 }

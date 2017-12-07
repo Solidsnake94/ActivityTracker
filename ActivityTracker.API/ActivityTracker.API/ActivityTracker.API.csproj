@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201711280934350_Add_Property_To_Entities_Achievement_And_Goal.Designer.cs">
       <DependentUpon>201711280934350_Add_Property_To_Entities_Achievement_And_Goal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.cs" />
+    <Compile Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.Designer.cs">
+      <DependentUpon>201712071348424_Achievements_Change_NameProperty_To_Description.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711280934350_Add_Property_To_Entities_Achievement_And_Goal.resx">
       <DependentUpon>201711280934350_Add_Property_To_Entities_Achievement_And_Goal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.resx">
+      <DependentUpon>201712071348424_Achievements_Change_NameProperty_To_Description.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

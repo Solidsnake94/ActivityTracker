@@ -9,7 +9,7 @@ namespace ActivityTracker.API.Entities
     public partial class Achievement
     {
         public int AchievementID { get; set; }
-        public string Name { get; set; }
+        public string Description { get; set; }
         public int UserID { get; set; }
 
         [Required]

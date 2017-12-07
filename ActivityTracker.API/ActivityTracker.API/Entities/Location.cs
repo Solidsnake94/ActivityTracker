@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace ActivityTracker.API.Entities
 {
     using System;
@@ -26,6 +28,7 @@ namespace ActivityTracker.API.Entities
         [StringLength(10)]
         public string PostCode { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }
