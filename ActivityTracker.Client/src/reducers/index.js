@@ -4,7 +4,7 @@ import goals from "../reducers/goalsReducer";
 import user from "../reducers/userReducer";
 
 const rootReducer = combineReducers({
-  activities
+  activities,
   // goals,
   // user
 });

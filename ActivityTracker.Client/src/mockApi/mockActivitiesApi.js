@@ -11,7 +11,7 @@ const activities = [
     },
     {
         id: 2,
-        userId: 2,
+        userId: 1,
         title: 'Warmup ',
         date: new Date(),
         time: '5:00',
@@ -19,7 +19,7 @@ const activities = [
     },
     {
         id: 3,
-        userId: 3,
+        userId: 1,
         title: 'Another run',
         date: new Date(),
         time: '5:00',
@@ -27,7 +27,7 @@ const activities = [
     },
     {
         id: 4,
-        userId: 4,
+        userId: 1,
         title: 'Evening jog',
         date: new Date(),
         time: '3:50',
@@ -35,7 +35,7 @@ const activities = [
     },
     {
         id: 5,
-        userId: 5,
+        userId: 1,
         title: 'Weekend group run',
         date: new Date(),
         time: '4:00',

@@ -1,35 +1,41 @@
 import React from "react";
-import logo from "../../logo.svg";
+import { Switch, Route, Redirect } from "react-router-dom";
+
+import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import purple from "material-ui/colors/purple";
+import green from "material-ui/colors/green";
+import red from "material-ui/colors/red";
+
 import "./App.css";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import List from "../dashboard/sideNavigation/List/List";
-import ActivitiesPage from "../dashboard/content/activities/ActivitiesPage";
-import runningMan from "../../images/running-man.svg";
+import Dashboard from "../dashboard/Dashboard/Dashboard";
+import StartingPage from "../startingPage/StartingPage/StartingPage";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green, // Purple and green play nicely together.
+    secondary: {
+      ...green,
+      A400: "#00e677"
+    },
+    error: red
+  }
+});
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  // <MuiThemeProvider muiTheme={customTheme}>
 
   render() {
+    // console.log(this.props);
     return (
-      <MuiThemeProvider>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">
-              Activity Tracker - focus on running, rest leave to us !
-            </h1>
-            <img src={runningMan} className="App-logo" alt="logo" />
-          </header>
-
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ width: "20%", borderRight: "1px solid black", marginRight: "30px" }}>
-              <List />
-            </div>
-
-            <ActivitiesPage />
-          </div>
-        </div>
+      <MuiThemeProvider theme={theme}>
+        <Switch>
+          <Route exact path="/" component={StartingPage} />
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
       </MuiThemeProvider>
     );
   }

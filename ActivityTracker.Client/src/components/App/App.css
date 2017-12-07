@@ -2,47 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-}
-
-.App {
-  text-align: left;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 60px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 60px;
-  padding: 15px;
-  color: white;
+  /* background-color: #303030 */
+ }
+/* 
+ .main{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.App-chat-container{
-  display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  /* justify-content: center; */
-  border: 1px solid #00BCD4;
-  width: fit-content;
-  margin-left: 25vw;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+} */
