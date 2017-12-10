@@ -1,0 +1,8 @@
+.dashboard-main {
+    display: flex;
+    flex-direction: row;
+}
+.dashboard-content {
+    width: 100%;
+    padding: 50px;
+}

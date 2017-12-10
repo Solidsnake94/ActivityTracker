@@ -1,19 +1,20 @@
-// import * as types from "../constants/ActionTypes";
+import * as types from "../constants/ActionTypes";
 
-// const initialState = [
-//   {
-//     activityId: "1",
-//     activityName: "Run a mile"
-//   }
-// ];
+const initialState = [];
 
-// export default function activitiesReducer(state = initialState, action) {
-//   switch (action.type) {
-//     case types.CREATE_ACTIVITY:
-//       // not sure if this will work
-//       return [...state, { ...action.activity }];
+export default function activitiesReducer(state = initialState, action) {
+  switch (action.type) {
+    case types.LOAD_GOALS_SUCCESS: {
+      console.log('action.goals');
+      console.log(action.goals);
+      return action.goals;
+    }
 
-//     default:
-//       return state;
-//   }
-// }
+    // case types.CREATE_ACTIVITY:
+    //   // not sure if this will work
+    //   return [...state, { ...action.activity }];
+
+    default:
+      return state;
+  }
+}

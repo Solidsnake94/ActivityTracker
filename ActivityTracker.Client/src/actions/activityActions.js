@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import activitiesApi from "../mockApi/mockActivitiesApi";
+import apiActivities from "../api/apiActivities";
 
 // =================================================
 // Using thunk middleware to load activities;
@@ -13,7 +13,7 @@ export function loadActivitiesSuccess(activities) {
 
 export function loadActivities() {
   return function(dispatch) {
-    return activitiesApi
+    return apiActivities
       .getAllActivities()
       .then(activities => {
         console.log("getAllActivities");

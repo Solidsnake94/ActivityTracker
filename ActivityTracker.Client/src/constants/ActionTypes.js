@@ -7,6 +7,8 @@ export const SET_ACTIVITY_TO_COMPLETE = 'SET_ACTIVITY_TO_COMPLETE';
 
 
 // goal action types 
+export const LOAD_GOALS_SUCCESS = 'LOAD_GOALS_SUCCESS';
+export const LOAD_GOALS_ERROR = 'LOAD_GOALS_ERROR';
 export const CREATE_GOAL = 'CREATE_GOAL';
 export const UPDATE_GOAL = 'UPDATE_GOAL';
 export const DELETE_GOAL = 'DELETE_GOAL';

@@ -6,13 +6,16 @@ import { BrowserRouter, Route } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
 import configureStore from "./store/configureStore";
-import App from "./components/App/App";
+import App from "./components/App";
 
 import { loadActivities } from "./actions/activityActions";
+import { loadGoals } from "./actions/goalActions";
 
 const store = configureStore();
 store.dispatch(loadActivities());
-console.log("get store");
+store.dispatch(loadGoals());
+
+console.log("redux store on app load:");
 console.log(store.getState());
 
 ReactDOM.render(

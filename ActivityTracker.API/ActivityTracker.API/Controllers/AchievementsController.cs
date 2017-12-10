@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace ActivityTracker.API.Controllers
 {
-    [RoutePrefix("api/achievemnts")]
+    [RoutePrefix("api/achievements")]
     public class AchievementsController : ApiController
     {
         private readonly IAchievementRepository _achievementRepository;

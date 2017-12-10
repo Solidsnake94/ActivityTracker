@@ -5,7 +5,7 @@ import user from "../reducers/userReducer";
 
 const rootReducer = combineReducers({
   activities,
-  // goals,
+  goals,
   // user
 });
 

@@ -1,4 +1,30 @@
 import * as types from "../constants/ActionTypes";
+import apiGoals from '../api/apiGoals';
+
+export function loadGoalsSuccess(goals) {
+  return {
+    type: types.LOAD_GOALS_SUCCESS,
+    goals
+  };
+}
+
+export function loadGoals() {
+  return function(dispatch) {
+    return apiGoals
+      .getAllGoals()
+      .then(goals => {
+        dispatch(loadGoalsSuccess(goals));
+      })
+      .catch(err => {
+        throw(err);
+      });
+  };
+}
+
+
+
+
+
 
 export function createGoal(activity) {
   return {
