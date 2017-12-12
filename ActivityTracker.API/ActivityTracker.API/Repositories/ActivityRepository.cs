@@ -21,7 +21,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                List<Activity> activities = await _db.Activities.Where(a => a.ActivityID == userId).ToListAsync();
+                List<Activity> activities = await _db.Activities.Where(a => a.UserID == userId).ToListAsync();
                 return activities;
             }
             catch (Exception e)

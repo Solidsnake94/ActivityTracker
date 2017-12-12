@@ -223,6 +223,14 @@
     <Compile Include="Migrations\201712101901293_AchievementAddDescription.Designer.cs">
       <DependentUpon>201712101901293_AchievementAddDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712121438276_IsPublicToGoalInDatabase.cs" />
+    <Compile Include="Migrations\201712121438276_IsPublicToGoalInDatabase.Designer.cs">
+      <DependentUpon>201712121438276_IsPublicToGoalInDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712121443566_AddAchievementTitleToAchievementTable.cs" />
+    <Compile Include="Migrations\201712121443566_AddAchievementTitleToAchievementTable.Designer.cs">
+      <DependentUpon>201712121443566_AddAchievementTitleToAchievementTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +265,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712101901293_AchievementAddDescription.resx">
       <DependentUpon>201712101901293_AchievementAddDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121438276_IsPublicToGoalInDatabase.resx">
+      <DependentUpon>201712121438276_IsPublicToGoalInDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712121443566_AddAchievementTitleToAchievementTable.resx">
+      <DependentUpon>201712121443566_AddAchievementTitleToAchievementTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
