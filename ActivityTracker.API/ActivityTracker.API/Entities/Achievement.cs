@@ -9,9 +9,9 @@ namespace ActivityTracker.API.Entities
     public partial class Achievement
     {
         public int AchievementID { get; set; }
-        public string Description { get; set; }
         public int UserID { get; set; }
-
+        public string Description { get; set; }
+        
         [Required]
         [StringLength(50)]
         public string AchievementTitle { get; set; }
@@ -20,3 +20,5 @@ namespace ActivityTracker.API.Entities
         public virtual User User { get; set; }
     }
 }
+
+//Update-Database -TargetMigration: Achievements_Change_NameProperty_To_Description

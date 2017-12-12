@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 
 import { TableHead, TableCell, TableRow } from "material-ui/Table";
 
-import {
-  mapArrayToTableHeadings,
-} from "../utils/TableUtils";
+import { mapArrayToTableHeadings } from "../utils/TableUtils";
+import { tryParseToDate } from "../utils/DateUtils";
 import BaseTable from "./BaseTable";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
@@ -29,7 +28,7 @@ const GoalList = props => {
           return prop.includes("Id") || prop.includes("ID") ? false : true;
         })
         .map(goalProp => (
-          <TableCell key={goalProp}>{goal[goalProp].toString()}</TableCell>
+          <TableCell key={goalProp}>{tryParseToDate(goal[goalProp])}</TableCell>
         ))}
       <TableCell>
         <IconButton color="primary">

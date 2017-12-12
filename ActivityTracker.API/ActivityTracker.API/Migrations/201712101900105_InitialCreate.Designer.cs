@@ -7,13 +7,13 @@ namespace ActivityTracker.API.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Add_Property_To_Entities_Achievement_And_Goal : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_Property_To_Entities_Achievement_And_Goal));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711280934350_Add_Property_To_Entities_Achievement_And_Goal"; }
+            get { return "201712101900105_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

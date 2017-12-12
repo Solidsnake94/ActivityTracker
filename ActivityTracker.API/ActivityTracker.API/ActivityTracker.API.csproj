@@ -67,6 +67,10 @@
     <Reference Include="Moq, Version=4.7.145.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.145\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Swashbuckle.Core">
       <HintPath>..\packages\Swashbuckle.Core.5.3.1\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
@@ -165,9 +169,6 @@
     <Reference Include="Unity.ServiceLocation, Version=2.0.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.3.1\lib\net45\Unity.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -214,25 +215,13 @@
     <Compile Include="IRepositories\IFriendshipRepository.cs" />
     <Compile Include="IRepositories\IGoalRepository.cs" />
     <Compile Include="IRepositories\IUserRepository.cs" />
-    <Compile Include="Migrations\201711170327593_TestMigration1.cs" />
-    <Compile Include="Migrations\201711170327593_TestMigration1.Designer.cs">
-      <DependentUpon>201711170327593_TestMigration1.cs</DependentUpon>
+    <Compile Include="Migrations\201712101900105_InitialCreate.cs" />
+    <Compile Include="Migrations\201712101900105_InitialCreate.Designer.cs">
+      <DependentUpon>201712101900105_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711242059064_ActivityTypeEntity_modification.cs" />
-    <Compile Include="Migrations\201711242059064_ActivityTypeEntity_modification.Designer.cs">
-      <DependentUpon>201711242059064_ActivityTypeEntity_modification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711262016405_Add_AchievementDetails_Property.cs" />
-    <Compile Include="Migrations\201711262016405_Add_AchievementDetails_Property.Designer.cs">
-      <DependentUpon>201711262016405_Add_AchievementDetails_Property.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711280934350_Add_Property_To_Entities_Achievement_And_Goal.cs" />
-    <Compile Include="Migrations\201711280934350_Add_Property_To_Entities_Achievement_And_Goal.Designer.cs">
-      <DependentUpon>201711280934350_Add_Property_To_Entities_Achievement_And_Goal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.cs" />
-    <Compile Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.Designer.cs">
-      <DependentUpon>201712071348424_Achievements_Change_NameProperty_To_Description.cs</DependentUpon>
+    <Compile Include="Migrations\201712101901293_AchievementAddDescription.cs" />
+    <Compile Include="Migrations\201712101901293_AchievementAddDescription.Designer.cs">
+      <DependentUpon>201712101901293_AchievementAddDescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PagedResult.cs" />
@@ -243,12 +232,15 @@
     <Compile Include="Repositories\FriendshipRepository.cs" />
     <Compile Include="Repositories\GoalRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Utillities\DummyDbDataGenerator.cs" />
+    <Compile Include="Utillities\FormattedDbEntityValidationException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ConnectionStrings.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -258,23 +250,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Utillities\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711170327593_TestMigration1.resx">
-      <DependentUpon>201711170327593_TestMigration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712101900105_InitialCreate.resx">
+      <DependentUpon>201712101900105_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711242059064_ActivityTypeEntity_modification.resx">
-      <DependentUpon>201711242059064_ActivityTypeEntity_modification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711262016405_Add_AchievementDetails_Property.resx">
-      <DependentUpon>201711262016405_Add_AchievementDetails_Property.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711280934350_Add_Property_To_Entities_Achievement_And_Goal.resx">
-      <DependentUpon>201711280934350_Add_Property_To_Entities_Achievement_And_Goal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712071348424_Achievements_Change_NameProperty_To_Description.resx">
-      <DependentUpon>201712071348424_Achievements_Change_NameProperty_To_Description.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712101901293_AchievementAddDescription.resx">
+      <DependentUpon>201712101901293_AchievementAddDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

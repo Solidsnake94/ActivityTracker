@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TableHead, TableCell, TableRow } from "material-ui/Table";
 
-import {
-  mapArrayToTableHeadings,
-  filterIdsElementsfromArray
-} from "../utils/TableUtils";
+import { mapArrayToTableHeadings } from "../utils/TableUtils";
+import { tryParseToDate } from "../utils/DateUtils";
 import BaseTable from "./BaseTable";
 import IconButton from "material-ui/IconButton";
 import DeleteIcon from "material-ui-icons/Delete";
@@ -18,7 +16,6 @@ const headings = mapArrayToTableHeadings([
 ]);
 
 const ActivityList = props => {
-  
   const rows = props.activities.map(activity => (
     <TableRow hover key={activity.activityId}>
       {Object.keys(activity)
@@ -26,7 +23,9 @@ const ActivityList = props => {
           return prop.includes("Id") || prop.includes("ID") ? false : true;
         })
         .map(activityProp => (
-          <TableCell key={activityProp}> {activity[activityProp].toString()} </TableCell>
+          <TableCell key={activityProp}>
+            {tryParseToDate(activity[activityProp])}
+          </TableCell>
         ))}
       <TableCell>
         <IconButton color="primary">

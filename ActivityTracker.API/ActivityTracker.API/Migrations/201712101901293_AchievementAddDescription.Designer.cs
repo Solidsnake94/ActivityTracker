@@ -7,13 +7,13 @@ namespace ActivityTracker.API.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Add_AchievementDetails_Property : IMigrationMetadata
+    public sealed partial class AchievementAddDescription : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_AchievementDetails_Property));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AchievementAddDescription));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711262016405_Add_AchievementDetails_Property"; }
+            get { return "201712101901293_AchievementAddDescription"; }
         }
         
         string IMigrationMetadata.Source

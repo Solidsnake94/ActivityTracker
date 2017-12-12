@@ -21,6 +21,9 @@ RawBlameHistory
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#Ignore private connectionString for local SQL-Server
+ConnectionStrings.config
+
 # User-specific files
 *.suo
 *.user

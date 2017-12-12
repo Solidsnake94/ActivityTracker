@@ -34,7 +34,7 @@ namespace ActivityTracker.API.Entities
         [Column(TypeName = "date")]
         public DateTime BirthDate { get; set; }
 
-        public int LocationID { get; set; }
+        public int? LocationID { get; set; }
 
         [Required]
         [StringLength(50)]

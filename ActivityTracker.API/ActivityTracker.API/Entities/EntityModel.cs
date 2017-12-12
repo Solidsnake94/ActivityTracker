@@ -1,4 +1,6 @@
+using System.Data.Entity.Validation;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Utillities;
 
 namespace ActivityTracker.API.Entities
 {
@@ -79,5 +81,20 @@ namespace ActivityTracker.API.Entities
                 .Property(e => e.BodyFat)
                 .HasPrecision(4, 3);
         }
+
+
+        // Overrided for printing errors while trying to update the database
+//        public override int SaveChanges()
+//        {
+//            try
+//            {
+//                return base.SaveChanges();
+//            }
+//            catch (DbEntityValidationException e)
+//            {
+//                var newException = new FormattedDbEntityValidationException(e);
+//                throw newException;
+//            }
+//        }
     }
 }

@@ -8,6 +8,7 @@ namespace ActivityTracker.API.Controllers
     [RoutePrefix("api/friends")]
     public class FriendsController : ApiController
     {
+
         private readonly IFriendshipRepository _friendshipRepository;
 
         public FriendsController(IFriendshipRepository friendshipRepository)
