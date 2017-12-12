@@ -13,6 +13,11 @@ namespace ActivityTracker.API.Controllers
 
         private readonly IUserRepository _userRepository;
 
+        public ActivitiesController(IActivityRepository activityRepository)
+        {
+            _activityRepository = activityRepository;
+        }
+
         public ActivitiesController(IActivityRepository activityRepository, IUserRepository userRepository)
         {
             _activityRepository = activityRepository;

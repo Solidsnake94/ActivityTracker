@@ -12,6 +12,11 @@ namespace ActivityTracker.API.Controllers
         private readonly IGoalRepository _goalRepository;
         private readonly IUserRepository _userRepository;
 
+        public GoalsController(IGoalRepository goalRepository)
+        {
+            _goalRepository = goalRepository;
+        }
+
         public GoalsController(IGoalRepository goalRepository, IUserRepository userRepository)
         {
             _goalRepository = goalRepository;

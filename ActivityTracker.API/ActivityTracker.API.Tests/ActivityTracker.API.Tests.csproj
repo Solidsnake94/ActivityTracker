@@ -116,8 +116,9 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
+    <Compile Include="ControllerTests\AchievementsController.Test.cs" />
     <Compile Include="ControllerTests\ActivitiesController.Test.cs" />
-    <Compile Include="Helpers\TestsHelper.cs" />
+    <Compile Include="ControllerTests\GoalController.Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepostoryTests\ActivityRepository.Test.cs" />
     <Compile Include="RepostoryTests\Hello.cs" />
