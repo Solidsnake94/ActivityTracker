@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render dashboardnavtop correctly 1`] = `
+<header
+  className="header"
+>
+  <h1
+    className="title"
+  >
+    Activity Tracker - focus on running, rest leave to us !
+  </h1>
+  <img
+    alt="logo"
+    className="logo"
+    src="running-man.svg"
+  />
+</header>
+`;
