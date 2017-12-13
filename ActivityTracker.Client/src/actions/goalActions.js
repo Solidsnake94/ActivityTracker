@@ -1,5 +1,17 @@
 import * as types from "../constants/ActionTypes";
-import apiGoals from '../api/apiGoals';
+import apiGoals from "../api/apiGoals";
+
+export function loadGoals() {
+  return async function(dispatch) {
+    let goals;
+    try {
+      goals = await apiGoals.getAllUserGoals(19);
+      dispatch(loadGoalsSuccess(goals));
+    } catch (e) {
+      throw e;
+    }
+  };
+}
 
 export function loadGoalsSuccess(goals) {
   return {
@@ -8,23 +20,18 @@ export function loadGoalsSuccess(goals) {
   };
 }
 
-export function loadGoals() {
-  return function(dispatch) {
-    return apiGoals
-      .getAllGoals()
-      .then(goals => {
-        dispatch(loadGoalsSuccess(goals));
-      })
-      .catch(err => {
-        throw(err);
-      });
-  };
+export function loadGoalsError(error){
+  return {
+    type: types.LOAD_GOALS_ERROR,
+    error
+  }
 }
 
 
 
+// export function loadGoals(){
 
-
+// }
 
 export function createGoal(activity) {
   return {

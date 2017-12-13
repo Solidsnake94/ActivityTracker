@@ -20,7 +20,7 @@ namespace ActivityTracker.API.Migrations
             //  to avoid creating duplicate seed data.
             
            
-            var r = new Random(1);
+            var r = new Random();
 
             var firstNames = DummyDbDataGenerator.UserFirstNames;
             var surnames = DummyDbDataGenerator.UserSurnames;

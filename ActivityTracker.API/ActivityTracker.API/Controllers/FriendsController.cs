@@ -2,9 +2,11 @@
 using ActivityTracker.API.IRepositories;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ActivityTracker.API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/friends")]
     public class FriendsController : ApiController
     {

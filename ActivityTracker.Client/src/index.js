@@ -11,7 +11,13 @@ import App from "./components/App";
 import { loadActivities } from "./actions/activityActions";
 import { loadGoals } from "./actions/goalActions";
 
+import ApiGoals from "./api/apiGoals"; 
+
+
+
 const store = configureStore();
+
+//ApiGoals.getAllUserGoals(19)
 store.dispatch(loadActivities());
 store.dispatch(loadGoals());
 

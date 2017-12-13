@@ -12,22 +12,31 @@ export function loadActivitiesSuccess(activities) {
 }
 
 export function loadActivities() {
-  return function(dispatch) {
-    return apiActivities
-      .getAllActivities()
-      .then(activities => {
-        console.log("getAllActivities");
-        console.log(activities);
-        dispatch(loadActivitiesSuccess(activities));
-      })
-      .catch(err => {
-        throw(err);
-      });
+  return async function(dispatch) {
+    let activities;
+    try {
+      activities = await apiActivities.getAllUserActivities(19);
+      dispatch(loadActivitiesSuccess(activities));
+    } catch (e) {
+      throw e;
+    }
   };
 }
+  // return function(dispatch) {
+  //   return apiActivities
+  //     .getAllActivities()
+  //     .then(activities => {
+  //       console.log("getAllActivities");
+  //       console.log(activities);
+  //       dispatch(loadActivitiesSuccess(activities));
+  //     })
+  //     .catch(err => {
+  //       throw(err);
+  //     });
+  // };
+
 
 // If loaded activities successfully from API dispatch an action to the store
-
 
 // export function loadActivitiesError() {
 //   return{

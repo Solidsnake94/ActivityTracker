@@ -3,9 +3,12 @@ using ActivityTracker.API.IRepositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ActivityTracker.API.Controllers
 {
+    //[EnableCors(origins: "http://mywebclient.azurewebsites.net", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/goals")]
     public class GoalsController : ApiController
     {
