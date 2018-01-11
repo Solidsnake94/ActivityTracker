@@ -3,25 +3,46 @@ using ActivityTracker.API.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.Common;
+
 
 namespace ActivityTracker.API.Repositories
 {
-    public class ActivityRepository:IActivityRepository
+    public class ActivityRepository : IActivityRepository
     {
-        private readonly IEntityModel _db;
+        private readonly EntityModel _db;
 
-        public ActivityRepository(IEntityModel db)
+        public ActivityRepository(EntityModel db)
         {
             _db = db;
         }
 
         public async Task<IEnumerable<Activity>> GetAllUserActivities(int userId)
         {
+            //_db.Log = Console.Out;
+
+            // Northwnd db = new Northwnd(@"c:\northwnd.mdf");
+
+
             try
             {
-                List<Activity> activities = await _db.Activities.Where(a => a.UserID == userId).ToListAsync();
+                _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+
+                var activities = await _db.Activities.Where(a => a.UserID == userId).ToListAsync();
+//                foreach (var a in activities)
+//                {
+//                    Console.WriteLine("\t {0}", a.ActivityID);
+//                }
+//
+//                DbCommand dc = _db.GetCommand(activities);
+//                Console.WriteLine("\nCommand Text: \n{0}", dc.CommandText);
+//                Console.WriteLine("\nCommand Type: {0}", dc.CommandType);
+//                Console.WriteLine("\nConnection: {0}", dc.Connection);
+//
+//                Console.ReadLine();
                 return activities;
             }
             catch (Exception e)
@@ -36,6 +57,7 @@ namespace ActivityTracker.API.Repositories
             {
                 Activity activity = await _db.Activities.Where(a => a.ActivityID == activityId && a.UserID == userId)
                     .SingleOrDefaultAsync();
+                Console.WriteLine(activity.ToString());
                 return activity;
             }
             catch (Exception e)
@@ -65,7 +87,18 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
+                _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+
+                var a = new
+                {
+                    CreatedDate = activity.CreatedDate,
+                    Time = activity.Time,
+                    DistanceInKilometers = activity.DistanceInKilometers,
+                    UserID = activity.UserID,
+                    ActivityTypeID = activity.ActivityTypeID
+                };
                 _db.Activities.Add(activity);
+
                 await _db.SaveChangesAsync();
                 return "Activity succesfully created";
             }

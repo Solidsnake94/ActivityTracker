@@ -1,11 +1,11 @@
 import * as types from "../constants/ActionTypes";
-//import apiGoals from "../api/apiGoals";
+import apiGoals from "../api/apiGoals";
 
 export function loadGoals() {
   return async function(dispatch) {
     let goals;
     try {
-      //goals = await apiGoals.getAllUserGoals(19);
+      goals = await apiGoals.getAllUserGoals(19);
       dispatch(loadGoalsSuccess(goals));
     } catch (e) {
       throw e;

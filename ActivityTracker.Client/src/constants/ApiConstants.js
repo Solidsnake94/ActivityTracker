@@ -1,4 +1,4 @@
-export const API_HOSTNAME = 'http://localhost:55078/api';
+export const API_HOSTNAME = 'http://keaactivitytracker.azurewebsites.net/api';
 
 export const ALL_USER_ACTIVITIES_URL = `${API_HOSTNAME}/activities?userId={userId}`
 export const CREATE_USER_ACTIVITY_URL =`${API_HOSTNAME}/activities/create`

@@ -22,6 +22,9 @@ namespace ActivityTracker.API.Entities
         public virtual IDbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual IDbSet<User> Users { get; set; }
         public virtual IDbSet<UserBodyDetail> UserBodyDetails { get; set; }
+        public System.IO.TextWriter Log { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

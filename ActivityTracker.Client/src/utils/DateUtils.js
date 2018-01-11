@@ -1,10 +1,16 @@
-import moment from 'moment';
+import moment from "moment";
 
+// function _isDate(element){
+//   return element instanceof Date
+// }
 
-function _isDate(element){
-  return element instanceof Date
-}
-
-export function tryParseToDate(element){
-  return _isDate(element) ? moment(element).format('D[.]M[.]Y H:m') : element
+export function tryParseToDate(element) {
+  if (element.toString() === "true" || element.toString() === "false") {
+    return element.toString();
+  } else if (!isNaN(element)) {
+    return element;
+  } else {
+    let date = moment(element);
+    return date.isValid() ? date.format("D/M/Y [h:] HH [m:] mm") : element;
+  }
 }

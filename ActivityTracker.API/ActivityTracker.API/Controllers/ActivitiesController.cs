@@ -30,7 +30,7 @@ namespace ActivityTracker.API.Controllers
         //api/activities/create
         [Route("create")]
         [HttpPost]
-        public async Task<IHttpActionResult> CreateActivity(Activity activity)
+        public async Task<IHttpActionResult> CreateActivity([FromBody]Activity activity)
         {
             if (!ModelState.IsValid)
             {
