@@ -11,7 +11,7 @@ import App from "./components/App";
 import { loadActivities } from "./actions/activityActions";
 import { loadGoals } from "./actions/goalActions";
 
-import ApiGoals from "./api/apiGoals"; 
+import ApiGoals from "./apiRest/apiGoals"; 
 
 
 

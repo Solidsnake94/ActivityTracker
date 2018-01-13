@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import apiGoals from "../api/apiGoals";
+import apiGoals from "../apiRest/apiGoals";
 
 export function loadGoals() {
   return async function(dispatch) {

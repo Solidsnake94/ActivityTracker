@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import apiActivities from "../api/apiActivities";
+import apiActivities from "../apiRest/apiActivities";
 
 // =================================================
 // Using thunk middleware to load activities;
