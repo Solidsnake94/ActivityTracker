@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <header className="header">
         <h1 className="title">
-          Activity Tracker - focus on running, rest leave to us !
+          Activity Tracker - focus on running, leave the rest to us !
         </h1>
         <img src={runningMan} className="logo" alt="logo" />
       </header>

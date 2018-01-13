@@ -9,6 +9,8 @@ import red from "material-ui/colors/red";
 import "../styles/App.css";
 import Dashboard from "./Dashboard";
 import StartingPage from "./StartingPage";
+import Login from "./Login";
+import Register from "./Register";
 
 const theme = createMuiTheme({
   palette: {
@@ -35,6 +37,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={StartingPage} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
       </MuiThemeProvider>
     );

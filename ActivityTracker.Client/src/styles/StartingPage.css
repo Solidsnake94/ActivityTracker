@@ -1,0 +1,8 @@
+form,h3,p {
+    padding: 20px 40px 25px 40px;
+}
+
+button {
+    max-width: 50px;
+    align-self: flex-end;
+}

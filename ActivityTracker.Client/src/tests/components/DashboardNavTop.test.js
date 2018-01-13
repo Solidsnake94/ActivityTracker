@@ -8,6 +8,4 @@ test('should render dashboardnavtop correctly', () => {
 
     renderer.render(< DashboardNavTop />);
     expect(renderer.getRenderOutput()).toMatchSnapshot();
-    
-    console.log(renderer.getRenderOutput());
 })

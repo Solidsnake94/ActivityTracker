@@ -37,7 +37,7 @@ function ActivityForm(props) {
           </Typography>
         </Toolbar>
         <form className={classes.container}>
-          <TextField label="Created Date" type="text" />
+          <TextField label="Created Date" type="text" placeholder="dd/mm/yyyy"/>
           <TextField label="Time" type="text" />
           <TextField label="Distance (KM)" type="text" />
           <Button raised color="primary" className={classes.button}>

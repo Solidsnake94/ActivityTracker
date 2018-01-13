@@ -34,8 +34,8 @@ function GoalForm(props) {
         </Toolbar>
         <form className={classes.container}>
           <TextField label="Name" type="text" />
-          <TextField label="Start Date" type="text" />
-          <TextField label="End Date" type="text" />
+          <TextField label="Start Date" type="text"  placeholder="dd/mm/yyyy" />
+          <TextField label="End Date" type="text" placeholder="dd/mm/yyyy"/>
           <TextField label="Target Distance" type="text" />
           <TextField label="Target Time" type="text" />
           <FormGroup>
@@ -60,7 +60,7 @@ function GoalForm(props) {
               }
             />
             <Button raised color="primary" className={classes.button}>
-              Primary
+              Create
             </Button>
           </FormGroup>
         </form>

@@ -1,28 +1,54 @@
 import React from "react";
+
+import "../styles/StartingPage.css";
+
+import { withStyles } from "material-ui/styles";
+
 import AppBar from "material-ui/AppBar";
 import Toolbar from "material-ui/Toolbar";
 import Typography from "material-ui/Typography";
+import Paper from "material-ui/Paper";
+import Button from "material-ui/Button"
+
+import NavTop from "./DashboardNavTop";
+
+const styles = theme => ({
+  button: {
+    maxWidth: "50px",
+    alignSelf: "flex-end"
+  }
+});
 
 const StartingPage = props => {
   const login = e => {
-    props.history.push("/dashboard");
+    props.history.push("/login");
   };
+  const register = e => {
+    props.history.push("/register");
+  };
+
 
   return (
     <div>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Typography type="title" color="inherit">
-            Title
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <NavTop />
+      <Paper>
+        <Typography type="headline" component="h3">
+          Welcome activity enthusiast
+                </Typography>
 
-      <h1> Landing Page </h1>
-      <p> Create activities and goals and let us track them for you</p>
-      <button onClick={login}> Log in to dashboard</button>
+        <Typography component="p">
+          Create activities and goals and let us track them for you
+        </Typography>
+        <Button raised color="primary" className={props.button} onClick={login}>
+          Login
+            </Button>
+        <Button raised color="default" className={props.button} onClick={register}>
+          Register
+            </Button>
+
+      </Paper>
     </div>
   );
 };
 
-export default StartingPage;
+export default withStyles(styles)(StartingPage);
