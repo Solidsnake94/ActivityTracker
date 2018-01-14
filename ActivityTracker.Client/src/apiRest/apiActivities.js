@@ -2,8 +2,10 @@ import delay from "./delay";
 import { callApi } from "../utils/ApiUtils";
 import {
   ALL_USER_ACTIVITIES_URL,
-  CREATE_USER_ACTIVITY_URL
+  CREATE_USER_ACTIVITY_URL,
+  DELETE_USER_ACTIVITY_URL
 } from "../constants/ApiConstants";
+import { DELETE_ACTIVITY } from "../constants/ActionTypes";
 
 //#region test activities
 // const activities = [
@@ -96,6 +98,19 @@ class ActivitiesApi {
       console.log(error);
     }
   }
+  
+  static async deleteActivity(activity) {
+    let options = {
+      method: "DELETE"
+    };
+    try {
+      const response = await callApi(DELETE_USER_ACTIVITY_URL.replace("{activityId}", activity.id), options)
+      response
+    } catch (e) {
+      throw (e);
+    }
+  }
+
 }
 
 export default ActivitiesApi;

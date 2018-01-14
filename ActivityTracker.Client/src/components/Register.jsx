@@ -71,7 +71,7 @@ const Register = props => {
                         margin="normal"
                     />
                     <Button raised color="primary" className={props.button}>
-                        Primary
+                        Register
                     </Button>
                 </form>
             </Paper>

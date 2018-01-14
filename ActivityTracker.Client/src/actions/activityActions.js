@@ -12,7 +12,7 @@ export function loadActivitiesSuccess(activities) {
 }
 
 export function loadActivities() {
-  return async function(dispatch) {
+  return async function (dispatch) {
     let activities;
     try {
       activities = await apiActivities.getAllUserActivities(19);
@@ -22,6 +22,44 @@ export function loadActivities() {
     }
   };
 }
+
+
+export function createActivitySucccess(activity) {
+  return { type: types.CREATE_ACTIVITY, activity }
+}
+
+export function createActivity(activity) {
+  return async function (dispatch) {
+    let activity;
+    try {
+      activity = await apiActivities.createUserActivity(activity);
+      dispatch(createActivitySucccess(activity));
+    } catch (e) {
+      throw e;
+    }
+  };
+}
+
+
+export function deleteActivitySuccess(activity) {
+  return {
+    type: types.DELETE_ACTIVITY,
+    activity
+  };
+}
+
+export function deleteActivity(activity) {
+  return async function (dispatch) {
+    let response;
+    try {
+      response = await apiActivities.deleteActivity(activity);
+      dispatch(deleteActivitySuccess(response));
+    } catch (e) {
+      throw e;
+    }
+  }
+}
+
   // return function(dispatch) {
   //   return apiActivities
   //     .getAllActivities()
@@ -49,12 +87,6 @@ export function loadActivities() {
  */
 // ==================================================
 
-// export function createActivity(activity) {
-//   return {
-//     type: types.CREATE_ACTIVITY,
-//     activity
-//   };
-// }
 
 // export function updateActivity(activity) {
 //   return {
@@ -63,12 +95,7 @@ export function loadActivities() {
 //   };
 // }
 
-// export function deleteActivity(activity) {
-//   return {
-//     type: types.DELETE_ACTIVITY,
-//     activity
-//   };
-// }
+
 
 // export const setActivityToComplete = activity => {
 //   return {

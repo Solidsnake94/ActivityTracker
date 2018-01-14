@@ -10,43 +10,50 @@ import Paper from "material-ui/Paper";
 import Button from "material-ui/Button";
 import NavTop from "./DashboardNavTop";
 
-const Login = props => {
-    return (
-        <div>
-            <NavTop />
-            <Paper>
-                <Typography type="headline" component="h3">
-                    Login
-                </Typography>
-                <form className={props.container}>
-                    <TextField
-                        id="full-width"
-                        label="Email"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        placeholder="Enter your email"
-                        fullWidth
-                        margin="normal"
-                    />
-                    <TextField
-                        id="full-width"
-                        label="Password"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        placeholder="Enter your password"
-                        fullWidth
-                        margin="normal"
-                    />
-                    <Button raised color="primary" className={props.button}>
-                        Login
-                    </Button>
-                </form>
-            </Paper>
-        </div>
+class Login extends React.Component {
 
-    );
+    constructor(props){
+        super(props);
+    }
+
+    render(){
+        return (
+            <div>
+                <NavTop />
+                <Paper>
+                    <Typography type="headline" component="h3">
+                        Login
+                </Typography>
+                    <form className={this.props.container}>
+                        <TextField
+                            id="full-width"
+                            label="Email"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            placeholder="Enter your email"
+                            fullWidth
+                            margin="normal"
+                        />
+                        <TextField
+                            id="full-width"
+                            label="Password"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            placeholder="Enter your password"
+                            fullWidth
+                            margin="normal"
+                        />
+                        <Button raised color="primary" className={this.props.button}>
+                            Login
+                    </Button>
+                    </form>
+                </Paper>
+            </div>
+
+        );
+    }
 };
 
 export default Login;

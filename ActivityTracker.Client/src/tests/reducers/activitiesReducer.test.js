@@ -11,7 +11,7 @@ test("should set default state", () => {
 
 test("should load activities", () => {
     const action = {
-        type: actionTypes.LOAD_GOALS_SUCCESS,
+        type: actionTypes.LOAD_ACTIVITIES_SUCCESS,
         activities: activities
     }
 

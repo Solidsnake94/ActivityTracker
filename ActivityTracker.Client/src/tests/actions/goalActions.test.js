@@ -7,7 +7,7 @@ test('should create a goal',() => {
 
     expect(action).toEqual({
         type: actionTypes.CREATE_GOAL ,
-        activity : goals[0]
+        goals : goals[0]
     })
 });
 
@@ -16,7 +16,7 @@ test('should update a goal',() => {
 
     expect(action).toEqual({
         type: actionTypes.UPDATE_GOAL ,
-        activity : goals[0]
+        goals : goals[0]
     })
 });
 
@@ -25,6 +25,6 @@ test('should delete a goal',() => {
 
     expect(action).toEqual({
         type: actionTypes.DELETE_ACTIVITY ,
-        activity : goals[0]
+        goals : goals[0]
     })
 });

@@ -33,11 +33,11 @@ function GoalForm(props) {
           </Typography>
         </Toolbar>
         <form className={classes.container}>
-          <TextField label="Name" type="text" />
+          <TextField label="Name" type="text" placeholder="Enter your name"/>
           <TextField label="Start Date" type="text"  placeholder="dd/mm/yyyy" />
           <TextField label="End Date" type="text" placeholder="dd/mm/yyyy"/>
-          <TextField label="Target Distance" type="text" />
-          <TextField label="Target Time" type="text" />
+          <TextField label="Target Distance" placeholder="Kilometers" type="text" />
+          <TextField label="Target Time" placeholder="hh:mm:ss" type="text" />
           <FormGroup>
             <FormControlLabel
               label="Completed"

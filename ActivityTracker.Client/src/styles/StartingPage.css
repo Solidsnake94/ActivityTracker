@@ -6,3 +6,8 @@ button {
     max-width: 50px;
     align-self: flex-end;
 }
+a {
+    color:blue;
+    cursor: pointer;
+    font-weight:bold;
+}

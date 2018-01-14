@@ -39,12 +39,10 @@ const StartingPage = props => {
         <Typography component="p">
           Create activities and goals and let us track them for you
         </Typography>
-        <Button raised color="primary" className={props.button} onClick={login}>
-          Login
-            </Button>
-        <Button raised color="default" className={props.button} onClick={register}>
-          Register
-            </Button>
+        <Typography component="p">
+          If it is your first time using our platform you can register  <a onClick={register}>here </a> or you if are are already a member of our community, login in <a onClick={login}>here</a>
+        </Typography>
+        
 
       </Paper>
     </div>

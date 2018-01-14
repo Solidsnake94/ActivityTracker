@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render startingpage correctly 1`] = `
+<StartingPage
+  classes={
+    Object {
+      "button": "StartingPage-button-1",
+    }
+  }
+/>
+`;

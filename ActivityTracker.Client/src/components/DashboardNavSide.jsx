@@ -9,6 +9,7 @@ import ListIcon from "material-ui-icons/List";
 import StarIcon from "material-ui-icons/Star";
 import RunnerIcon from "material-ui-icons/DirectionsRun";
 import DirectionsIcon from "material-ui-icons/Directions";
+import Divider from 'material-ui/Divider';
 import AddIcon from "material-ui-icons/Add";
 import ChartIcon from "material-ui-icons/ShowChart";
 import ExpandLess from "material-ui-icons/ExpandLess";
@@ -189,6 +190,11 @@ class DashboardNavSide extends React.Component {
             </Link>
           </List>
         </Collapse>
+        <Divider />
+        <ListItem className={classes.listItem} button>
+          <ListItemText primary="Log Out" />
+          {/* {this.state.openedListItems[0] ? <ExpandLess /> : <ExpandMore />} */}
+        </ListItem>
       </List>
       //  </div>
     );
