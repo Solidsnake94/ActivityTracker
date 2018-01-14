@@ -1,5 +1,6 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Repositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -15,17 +16,22 @@ namespace ActivityTracker.API.Controllers
 
         private readonly IUserRepository _userRepository;
 
+        private EntityModel _db;
+        public ActivitiesController()
+        {
+            _db = new EntityModel();
+            _activityRepository = new ActivityRepository(_db);
+        }
+
         public ActivitiesController(IActivityRepository activityRepository)
         {
             _activityRepository = activityRepository;
-        }
-
-        public ActivitiesController(IActivityRepository activityRepository, IUserRepository userRepository)
-        {
-            _activityRepository = activityRepository;
-            _userRepository = userRepository;
 
         }
+//        public ActivitiesController() 
+//        {
+//           
+//        }
 
         //api/activities/create
         [Route("create")]
@@ -131,18 +137,18 @@ namespace ActivityTracker.API.Controllers
             return Ok(activities);
         }
 
-        [Route("friends")]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetActivitiesByFriendsId(int userId, int friendsId)
-        {
-            if (!ModelState.IsValid && !_userRepository.IsFriendOfUser(userId,friendsId))
-            {
-                return BadRequest(ModelState);
-            }
-
-            IEnumerable activities = await _activityRepository.GetActivitiesByFriendsId(friendsId);
-            return Ok(activities);
-        }
+//        [Route("friends")]
+//        [HttpGet]
+//        public async Task<IHttpActionResult> GetActivitiesByFriendsId(int userId, int friendsId)
+//        {
+//            if (!ModelState.IsValid && !_userRepository.IsFriendOfUser(userId,friendsId))
+//            {
+//                return BadRequest(ModelState);
+//            }
+//
+//            IEnumerable activities = await _activityRepository.GetActivitiesByFriendsId(friendsId);
+//            return Ok(activities);
+//        }
         // Create activity
     }
 }

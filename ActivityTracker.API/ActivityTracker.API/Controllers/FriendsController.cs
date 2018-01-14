@@ -13,6 +13,11 @@ namespace ActivityTracker.API.Controllers
 
         private readonly IFriendshipRepository _friendshipRepository;
 
+        public FriendsController()
+        {
+            
+        }
+
         public FriendsController(IFriendshipRepository friendshipRepository)
         {
             _friendshipRepository = friendshipRepository;

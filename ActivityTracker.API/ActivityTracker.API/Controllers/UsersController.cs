@@ -1,12 +1,12 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Repositories;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using ActivityTracker.API.Repositories;
 
 namespace ActivityTracker.API.Controllers
 {
@@ -16,17 +16,24 @@ namespace ActivityTracker.API.Controllers
     public class UsersController : ApiController
     {
 
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly EntityModel db;
 
-//        public UsersController(IUserRepository userRepository)
-//        {
-//            _userRepository = userRepository;
-//        }
+        public UsersController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         public UsersController()
         {
+            db = new EntityModel();
             _userRepository = new UserRepository();
         }
+     
+//        public UsersController()
+//        {
+//            _userRepository = new UserRepository();
+//        }
 
 
         // GET api/users

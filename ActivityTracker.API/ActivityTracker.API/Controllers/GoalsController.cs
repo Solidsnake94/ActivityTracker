@@ -1,5 +1,6 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Repositories;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -13,18 +14,19 @@ namespace ActivityTracker.API.Controllers
     public class GoalsController : ApiController
     {
         private readonly IGoalRepository _goalRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly EntityModel db;
 
+        public GoalsController()
+        {
+            db =new EntityModel();
+            _goalRepository = new GoalRepository(db);
+        }
         public GoalsController(IGoalRepository goalRepository)
         {
             _goalRepository = goalRepository;
         }
 
-        public GoalsController(IGoalRepository goalRepository, IUserRepository userRepository)
-        {
-            _goalRepository = goalRepository;
-            _userRepository = userRepository;
-        }
+      
 
         [Route("create")]
         [HttpPost]
@@ -104,17 +106,17 @@ namespace ActivityTracker.API.Controllers
             return Ok(goals);
         }
 
-        [Route("friends")]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetGoalsByFriendId(int userId, int friendId)
-        {
-            if (!ModelState.IsValid && !_userRepository.IsFriendOfUser(userId, friendId))
-            {
-                return BadRequest(ModelState);
-            }
-
-            IEnumerable goals = await _goalRepository.GetGoalsByFriendsId(friendId);
-            return Ok(goals);
-        }
+//        [Route("friends")]
+//        [HttpGet]
+//        public async Task<IHttpActionResult> GetGoalsByFriendId(int userId, int friendId)
+//        {
+//            if (!ModelState.IsValid && !_userRepository.IsFriendOfUser(userId, friendId))
+//            {
+//                return BadRequest(ModelState);
+//            }
+//
+//            IEnumerable goals = await _goalRepository.GetGoalsByFriendsId(friendId);
+//            return Ok(goals);
+//        }
     }
 }

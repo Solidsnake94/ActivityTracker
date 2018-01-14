@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Common;
+using System.Data.Entity.Validation;
+using ActivityTracker.API.Utillities;
 
 
 namespace ActivityTracker.API.Repositories
@@ -60,9 +62,10 @@ namespace ActivityTracker.API.Repositories
                 Console.WriteLine(activity.ToString());
                 return activity;
             }
-            catch (Exception e)
+            catch (DbEntityValidationException e)
             {
-                throw e;
+                var newException = new FormattedDbEntityValidationException(e);
+                throw newException;
             }
         }
 

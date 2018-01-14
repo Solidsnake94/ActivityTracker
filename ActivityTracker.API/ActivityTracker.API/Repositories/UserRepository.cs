@@ -1,14 +1,13 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Utillities;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using ActivityTracker.API.Utillities;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ActivityTracker.API.Repositories
 {
@@ -16,27 +15,17 @@ namespace ActivityTracker.API.Repositories
     {
         private readonly IEntityModel _db;
 
-        //private FriendshipRepository _friendshipRepository;
-        private IFriendshipRepository _friendshipRepository;
-
-
+       
         public UserRepository()
         {
             _db = new EntityModel();
-            _friendshipRepository = new FriendshipRepository(_db);
+           
         }
 
-        public UserRepository(IEntityModel db)
-        {
-            _db = db;
-            //_friendshipRepository = new FriendshipRepository(_db);
-        }
-
-        public UserRepository(IEntityModel db, IFriendshipRepository friendshipRepository)
-        {
-            _db = db;
-            _friendshipRepository = friendshipRepository;
-        }
+//        public UserRepository(IEntityModel db)
+//        {
+//            _db = db;
+//        }
 
 
         public IEnumerable<User> GetAllUsers()
@@ -98,7 +87,8 @@ namespace ActivityTracker.API.Repositories
                     BirthDate = newUser.BirthDate,
                     Email = newUser.Email,
                     Password = identityUser.PasswordHash,
-                    PowerUser = newUser.PowerUser
+                    PowerUser = newUser.PowerUser,
+                    LocationID = newUser.LocationID 
                 };
                 _db.ActivityUsers.Add(user);
                 await _db.SaveChangesAsync();
