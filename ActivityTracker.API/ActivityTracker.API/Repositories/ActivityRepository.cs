@@ -13,9 +13,9 @@ namespace ActivityTracker.API.Repositories
 {
     public class ActivityRepository : IActivityRepository
     {
-        private readonly EntityModel _db;
+        private readonly IEntityModel _db;
 
-        public ActivityRepository(EntityModel db)
+        public ActivityRepository(IEntityModel db)
         {
             _db = db;
         }
@@ -29,7 +29,7 @@ namespace ActivityTracker.API.Repositories
 
             try
             {
-                _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+              //  _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
                 var activities = await _db.Activities.Where(a => a.UserID == userId).ToListAsync();
 //                foreach (var a in activities)
@@ -87,7 +87,7 @@ namespace ActivityTracker.API.Repositories
         {
             try
             {
-                _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+               // _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
                 var a = new
                 {

@@ -1,18 +1,36 @@
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using ActivityTracker.API.IRepositories;
 using ActivityTracker.API.Utillities;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ActivityTracker.API.Entities
 {
     using System.Data.Entity;
 
-    public partial class EntityModel : DbContext, IEntityModel
+//    public partial class EntityModel : IdentityDbContext<IdentityUser>, IEntityModel
+    public partial class EntityModel : IdentityDbContext<IdentityUser>, IEntityModel 
     {
         public EntityModel()
             : base("name=EntityModel")
-        { 
-        }
+        {
+            Database.SetInitializer<EntityModel>(null);
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
 
+        }
+        //        public EntityModel()
+        //            : base("name=EntityModel")
+        //        {
+        //        }
+
+        //Identity and Authorization
+
+        public DbSet<IdentityUserLogin> UserLogins { get; set; }
+        public DbSet<IdentityUserClaim> UserClaims { get; set; }
+        public DbSet<IdentityUserRole> UserRoles { get; set; }
+
+        // ... your custom DbSets
         public virtual IDbSet<Achievement> Achievements { get; set; }
         public virtual IDbSet<Activity> Activities { get; set; }
         public virtual IDbSet<ActivityType> ActivityTypes { get; set; }
@@ -20,14 +38,43 @@ namespace ActivityTracker.API.Entities
         public virtual IDbSet<Goal> Goals { get; set; }
         public virtual IDbSet<Location> Locations { get; set; }
         public virtual IDbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual IDbSet<User> Users { get; set; }
+        public virtual IDbSet<User> ActivityUsers { get; set; }
+        //public virtual IDbSet<User> Users { get; set; }
+        //public virtual IDbSet<User> Users { get; set; 
         public virtual IDbSet<UserBodyDetail> UserBodyDetails { get; set; }
-        public System.IO.TextWriter Log { get; set; }
+        //public System.IO.TextWriter Log { get; set; }
+
+        public static EntityModel Create()
+        {
+            return new EntityModel();
+        }
+
+
 
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            // Configure Asp Net Identity Tables
+            modelBuilder.Entity<IdentityUser>().ToTable("IdentityUser");
+            modelBuilder.Entity<IdentityUser>().Property(u => u.PasswordHash).HasMaxLength(500);
+            modelBuilder.Entity<IdentityUser>().Property(u => u.SecurityStamp).HasMaxLength(500);
+            modelBuilder.Entity<IdentityUser>().Property(u => u.PhoneNumber).HasMaxLength(50);
+
+            modelBuilder.Entity<IdentityRole>().ToTable("IdentityRole");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("IdentityUserRole");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("IdentityUserLogin");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("IdentityUserClaim");
+            modelBuilder.Entity<IdentityUserClaim>().Property(u => u.ClaimType).HasMaxLength(150);
+            modelBuilder.Entity<IdentityUserClaim>().Property(u => u.ClaimValue).HasMaxLength(500);
+
+
+            // Custom tables 
             modelBuilder.Entity<Activity>()
                 .Property(e => e.Time)
                 .HasPrecision(3);

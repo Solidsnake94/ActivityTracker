@@ -14,7 +14,7 @@ namespace ActivityTracker.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors();
+           // config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 "DefaultApi",

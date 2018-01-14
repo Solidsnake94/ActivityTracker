@@ -14,7 +14,7 @@ namespace ActivityTracker.API.IRepositories
         IDbSet<Goal> Goals { get; set; }
         IDbSet<Location> Locations { get; set; }
         IDbSet<sysdiagram> sysdiagrams { get; set; }
-        IDbSet<User> Users { get; set; }
+        IDbSet<User> ActivityUsers { get; set; }
         IDbSet<UserBodyDetail> UserBodyDetails { get; set; }
 
         Task<int> SaveChangesAsync();

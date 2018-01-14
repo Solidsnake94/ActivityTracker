@@ -6,19 +6,26 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using ActivityTracker.API.Repositories;
 
 namespace ActivityTracker.API.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
 
         private IUserRepository _userRepository;
 
-        public UsersController(IUserRepository userRepository)
+//        public UsersController(IUserRepository userRepository)
+//        {
+//            _userRepository = userRepository;
+//        }
+
+        public UsersController()
         {
-            _userRepository = userRepository;
+            _userRepository = new UserRepository();
         }
 
 
