@@ -21,7 +21,8 @@
     "redux-form": "^7.2.0",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-thunk": "^2.2.0",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "url-search-params": "^0.10.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -12,8 +12,44 @@ import NavTop from "./DashboardNavTop";
 
 class Login extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        
+
+        this.state = {
+            username: "",
+            password: ""
+        }
+
+        this.onChange = this.onChange.bind(this);
+    }
+    
+
+    // loginUser(event) {
+    //   event.preventDefault();
+    //   this.props.actions
+    //     .registerUser(this.state.user)
+    //     .then(() => this.props.history.push("/registerSuccess"));
+    // }
+
+    login(event) {
+        event.preventDefault();
+        let user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        this.props.actions.loginUser(user).then(() => this.props.history.push("/dashboard"));
+    }
+  
+    onChange(event) {
+      const target = event.target;
+      const name = target.name;
+      const value = target.value;
+  
+      this.setState({
+        [name] : value
+      });
     }
 
     render(){
@@ -34,6 +70,7 @@ class Login extends React.Component {
                             placeholder="Enter your email"
                             fullWidth
                             margin="normal"
+                            name = "username"
                         />
                         <TextField
                             id="full-width"
@@ -44,6 +81,7 @@ class Login extends React.Component {
                             placeholder="Enter your password"
                             fullWidth
                             margin="normal"
+                            name = "password"
                         />
                         <Button raised color="primary" className={this.props.button}>
                             Login

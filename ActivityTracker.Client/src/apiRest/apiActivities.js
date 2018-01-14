@@ -91,6 +91,7 @@ class ActivitiesApi {
       },
       body: JSON.stringify(activity)
     };
+    
     try {
       const response = await callApi(CREATE_USER_ACTIVITY_URL, options);
       return response;
@@ -101,7 +102,11 @@ class ActivitiesApi {
   
   static async deleteActivity(activity) {
     let options = {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        
+      }
     };
     try {
       const response = await callApi(DELETE_USER_ACTIVITY_URL.replace("{activityId}", activity.id), options)

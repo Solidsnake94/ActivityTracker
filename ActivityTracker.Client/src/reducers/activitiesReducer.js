@@ -8,28 +8,27 @@ export default function activitiesReducer(state = [], action) {
       console.log("activitiesReducer.action");
       console.log(action.activities);
       return action.activities;
-    };
+    }
 
     case types.CREATE_ACTIVITY: {
-      console.log('activiiesReducer.action');
+      console.log("activiiesReducer.action");
       return [
         ...state.filter(activity => activity.id !== action.activity.id),
         Object.assign({}, action.activity)
-      ]
-    };
+      ];
+    }
 
     case types.UPDATE_ACTIVITY: {
-
-    };
+    }
 
     case types.DELETE_ACTIVITY: {
       const newState = Object.assign([], state);
       const indexOfActivityToDelete = state.findIndex(activity => {
-        return activity.id == action.activity.id
-      })
+        return activity.id == action.activity.id;
+      });
       newState.splice(indexOfActivityToDelete, 1);
       return newState;
-    };
+    }
 
     // case types.CREATE_ACTIVITY:
     //   // not sure if this will work

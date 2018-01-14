@@ -11,6 +11,7 @@ import Dashboard from "./Dashboard";
 import StartingPage from "./StartingPage";
 import Login from "./Login";
 import Register from "./Register";
+import RegisterSuccess from "./RegisterSuccess";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,6 +40,7 @@ class App extends React.Component {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route exact path="/registerSuccess" component={RegisterSuccess} />
         </Switch>
       </MuiThemeProvider>
     );
