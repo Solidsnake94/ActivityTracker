@@ -12,9 +12,11 @@ export default function activitiesReducer(state = [], action) {
 
     case types.CREATE_ACTIVITY: {
       console.log("activiiesReducer.action");
+      console.log("State create : " + state);
       return [
-        ...state.filter(activity => activity.id !== action.activity.id),
-        Object.assign({}, action.activity)
+        Object.assign([], action.activity),
+        ...state
+
       ];
     }
 

@@ -17,9 +17,9 @@ import ApiGoals from "./apiRest/apiGoals";
 
 const store = configureStore();
 
-//ApiGoals.getAllUserGoals(19)
-// store.dispatch(loadActivities());
-// store.dispatch(loadGoals());
+ApiGoals.getAllUserGoals(2);
+store.dispatch(loadActivities());
+store.dispatch(loadGoals());
 
 console.log("redux store on app load:");
 console.log(store.getState());

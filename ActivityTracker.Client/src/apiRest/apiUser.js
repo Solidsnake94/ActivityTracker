@@ -1,4 +1,4 @@
-import URLSearchParams from 'url-seach-params';
+//import URLSearchParams from 'url-seach-params';
 
 import {
   REGISTER_USER_URL,

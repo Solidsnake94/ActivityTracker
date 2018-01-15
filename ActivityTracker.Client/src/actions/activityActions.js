@@ -15,12 +15,12 @@ export function loadActivities() {
   return async function (dispatch) {
     let activities;
     try {
-      activities = await apiActivities.getAllUserActivities(19);
+      activities = await apiActivities.getAllUserActivities(2);
       dispatch(loadActivitiesSuccess(activities));
     } catch (e) {
       throw e;
     }
-  };
+  }; 
 }
 
 
@@ -30,9 +30,9 @@ export function createActivitySucccess(activity) {
 
 export function createActivity(activity) {
   return async function (dispatch) {
-    let activity;
+    let response;
     try {
-      activity = await apiActivities.createUserActivity(activity);
+      response = await apiActivities.createUserActivity(activity);
       dispatch(createActivitySucccess(activity));
     } catch (e) {
       throw e;

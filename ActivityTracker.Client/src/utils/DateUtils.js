@@ -11,6 +11,6 @@ export function tryParseToDate(element) {
     return element;
   } else {
     let date = moment(element);
-    return date.isValid() ? date.format("D/M/Y [h:] HH [m:] mm") : element;
+    return date.isValid() ? date.format("D/M/Y") : element;
   }
 }

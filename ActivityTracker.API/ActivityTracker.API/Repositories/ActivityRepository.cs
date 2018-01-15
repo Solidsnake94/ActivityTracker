@@ -1,14 +1,12 @@
 ﻿using ActivityTracker.API.Entities;
 using ActivityTracker.API.IRepositories;
+using ActivityTracker.API.Utillities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Data.Common;
-using System.Data.Entity.Validation;
-using ActivityTracker.API.Utillities;
 
 
 namespace ActivityTracker.API.Repositories
@@ -33,7 +31,7 @@ namespace ActivityTracker.API.Repositories
             {
               //  _db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
-                var activities = await _db.Activities.Where(a => a.UserID == userId).ToListAsync();
+                var activities = await _db.Activities.Where(a => a.UserID == userId).OrderByDescending(a=> a.CreatedDate).ToListAsync();
 //                foreach (var a in activities)
 //                {
 //                    Console.WriteLine("\t {0}", a.ActivityID);

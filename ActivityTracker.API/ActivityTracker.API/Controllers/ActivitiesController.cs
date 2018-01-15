@@ -59,7 +59,7 @@ namespace ActivityTracker.API.Controllers
         }
 
         // DELETE api/activities/5
-        [Route("create")]
+        [Route("delete")]
         [HttpDelete]
         public async Task<IHttpActionResult> DeleteActivity(int activityId)
         {

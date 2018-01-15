@@ -101,6 +101,7 @@ class ActivitiesApi {
   }
   
   static async deleteActivity(activity) {
+    console.log("Api "+activity);
     let options = {
       method: "DELETE",
       headers: {
@@ -109,8 +110,8 @@ class ActivitiesApi {
       }
     };
     try {
-      const response = await callApi(DELETE_USER_ACTIVITY_URL.replace("{activityId}", activity.id), options)
-      response
+      const response = await callApi(DELETE_USER_ACTIVITY_URL.replace("{activityId}", activity), options)
+      return response;
     } catch (e) {
       throw (e);
     }
